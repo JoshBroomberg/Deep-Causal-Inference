@@ -5,7 +5,7 @@ rerun = []
 for model in assignment_model_names:
   for i in range(50):
     data = np.loadtxt("Data/Processed/n_1000_model_{}_v_{}_covar_data_sparsity.csv".format(model, i), delimiter=",")
-    if data[0, 0] == data[999, 0] and data[0,3] == data[999, 3]:
+    if np.array_equal(data[:500, 0], data[500:, 0]) and data[0,3] == data[999, 3]:
       print(model, i, "Data/Processed/n_1000_model_{}_v_{}_covar_data_sparsity.csv".format(model, i))
       rerun.append((model, i, "sparsity"))
 
