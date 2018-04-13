@@ -1,3 +1,4 @@
 .ipynb_checkpoints/
 Data/Raw/
 *.tar.gz
+.DS_Store
