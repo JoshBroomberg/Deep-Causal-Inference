@@ -210,7 +210,7 @@ def run_for_range(start, end):
                                                     dataset,
                                                     dataset_number,
                                                     loss=loss_type,
-                                                    verbose=True)
+                                                    verbose=False)
                 encode_data(trained_model, dataset, loss=loss_type)
 
                 print("---- Done in ", time() - start, " seconds\n")
@@ -230,7 +230,7 @@ def run_for_range(start, end):
 # In[38]:
 
 
-run_for_range(args.start_point, args.end_point)
+models_to_rerun = run_for_range(args.start_point, args.end_point)
 
 
 # In[8]:
