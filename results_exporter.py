@@ -32,14 +32,13 @@ results_files = {
     # NN Prop
     "Neural Propensity Matching": "NN/est_logistic_prop_matching_est_runs_200_n_1000",
     "GenMatch - NN Prop Score": "NN/genmatch/est_genmatch_est_runs_250_n_1000",
-    # "GenMatch - NN Prop Score + Logistic Prop Score": "NN/genmatch_bothp",
     
     # GENMATCH AE
-    "GenMatch - NN Prop Score + AE Reconstruction (eval on compressed)": "NN/genmatch_reconstruction/est_genmatch_est_runs_200_n_1000"
-    # "GenMatch - NN Prop Score + AE Reconstruction (eval on original)": "NN/genmatch_reconstruction_evalonoriginal/est_genmatch_est_runs_200_n_1000"
+    "GenMatch - NN Prop Score + AE Reconstruction (eval on compressed)": "NN/genmatch_reconstruction/est_genmatch_est_runs_200_n_1000",
+    "GenMatch - NN Prop Score + AE Reconstruction (eval on original)": "NN/genmatch_reconstruction_evalonoriginal/est_genmatch_est_runs_200_n_1000",
     
     # GENMATCH VAE
-    # "GenMatch - NN Prop Score + VAE (eval on compressed)": "NN/genmatch_vae/est_genmatch_est_runs_200_n_1000"
+    "GenMatch - NN Prop Score + VAE (eval on compressed)": "NN/genmatch_vae/est_genmatch_est_runs_200_n_1000"
     # "GenMatch - NN Prop Score + VAE (eval on compressed)": "NN/genmatch_vae_evaloriginal/est_genmatch_est_runs_200_n_1000"
 
 }
