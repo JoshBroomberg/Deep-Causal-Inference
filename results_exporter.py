@@ -1,9 +1,13 @@
 import pickle
 import csv
+import numpy as np
 
 results_prefix = "./Results/"
 assignment_model_names = ['A_add_lin', 'B_add_mild_nlin', 'C_add_mod_nlin', 'D_mild_nadd_lin',
                      'E_mild_nadd_mild_nlin', 'F_mod_nadd_lin', 'G_mod_nadd_mod_nlin']
+
+clean_model_names = ['A additive linear', 'B additive mild nonlinear', 'C additive mod nonlinear', 'D mild nonadditive linear',
+                     'E mild nonadditive mild nonlinear', 'F mod nonadditive linear', 'G mod nonadditive mod nonlinear']
 
 results_files = {
     "Logistic Propensity Matching": "Original/est_logistic_prop_matching_est_runs_1000_n_1000",
@@ -38,21 +42,33 @@ results_files = {
     "GenMatch - NN Prop Score + AE Reconstruction (eval on original)": "NN/genmatch_reconstruction_evalonoriginal/est_genmatch_est_runs_200_n_1000",
     
     # GENMATCH VAE
-    "GenMatch - NN Prop Score + VAE (eval on compressed)": "NN/genmatch_vae/est_genmatch_est_runs_200_n_1000"
-    # "GenMatch - NN Prop Score + VAE (eval on compressed)": "NN/genmatch_vae_evaloriginal/est_genmatch_est_runs_200_n_1000"
+    "GenMatch - NN Prop Score + VAE (eval on compressed)": "NN/genmatch_vae/est_genmatch_est_runs_200_n_1000",
+    "GenMatch - NN Prop Score + VAE (eval on compressed)": "NN/genmatch_vae_evaloriginal/est_genmatch_est_runs_200_n_1000"
 
 }
-print(str("\t".join(assignment_model_names)))
+print(str("\t".join(clean_model_names)))
 
 with open('results.csv', 'w') as csvfile:
     
     result_writer = csv.writer(csvfile, delimiter=',',
                             quotechar='"', quoting=csv.QUOTE_MINIMAL)
 
+    result_writer.writerow(["Method"] + clean_model_names)
     for metric in ["Bias", "RMSE"]:
         for result_name, result_file in results_files.items():
             result_dict = pickle.load(open(results_prefix + result_file + ".p", "rb"))
-            metric_values = [str(result_dict[model][metric]) for model in assignment_model_names]
+            metric_values = [str(round(result_dict[model][metric], 3)) for model in assignment_model_names]
             result_writer.writerow([result_name] + metric_values)
 
+with open('original_method_results.csv', 'w') as csvfile:
+    
+    result_writer = csv.writer(csvfile, delimiter=',',
+                            quotechar='"', quoting=csv.QUOTE_MINIMAL)
+
+    result_writer.writerow(["Method"] + clean_model_names)
+    for result_name, result_file in results_files.items():
+        if result_name in ["GenMatch", "Logistic Propensity Matching"]:
+            result_dict = pickle.load(open(results_prefix + result_file + ".p", "rb"))
+            metric_values = ["{} ({:.3f})".format(round(result_dict[model]["Bias"], 3), result_dict[model]["RMSE"]) for model in assignment_model_names]
+            result_writer.writerow([result_name] + metric_values)
 

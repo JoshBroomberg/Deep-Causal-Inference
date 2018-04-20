@@ -1,0 +1,3 @@
+Method,A additive linear,B additive mild nonlinear,C additive mod nonlinear,D mild nonadditive linear,E mild nonadditive mild nonlinear,F mod nonadditive linear,G mod nonadditive mod nonlinear
+Logistic Propensity Matching,0.046 (0.073),3.184 (0.066),10.094 (0.077),6.721 (0.085),10.362 (0.091),3.123 (0.076),11.83 (0.078)
+GenMatch,5.559 (0.042),4.31 (0.038),3.716 (0.043),2.307 (0.041),1.636 (0.039),5.059 (0.044),3.186 (0.044)
